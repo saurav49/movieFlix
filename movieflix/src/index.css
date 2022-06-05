@@ -6,6 +6,10 @@
     body {
         @apply bg-[#141414]
     }
+
+    nav {
+        @apply fixed top-0 z-50 w-full flex items-center justify-between transition-all px-4 lg:px-9
+    }
 }
 
 @layer components {

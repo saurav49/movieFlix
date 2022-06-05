@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 const BrandIcon = (props) => {
   return (
     <svg
@@ -15,11 +17,29 @@ const BrandIcon = (props) => {
 };
 
 const Navbar = () => {
+  const [isScroll, setIsScroll] = useState(false);
+
+  useEffect(() => {
+    const handleScreenScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScroll(true);
+      } else {
+        setIsScroll(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScreenScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScreenScroll);
+    };
+  }, []);
+
   return (
-    <nav>
+    <nav className={`${isScroll && "bg-[#141414]"}`}>
       <div className="flex items-center space-x-4 md:space-x-2">
         <BrandIcon width="100" height="100" />
-        <ul className="flex items-center space-x-4">
+        <ul className="hidden md:flex items-center space-x-4">
           <li className="navlink">Home</li>
           <li className="navlink">TV Shows</li>
           <li className="navlink">Movies</li>
@@ -27,8 +47,56 @@ const Navbar = () => {
           <li className="navlink">My List</li>
         </ul>
       </div>
+      <div className="flex items-center text-sm">
+        <ul className="hidden sm:flex items-center space-x-4">
+          <li className="navlink">{Icons["search"]}</li>
+          <li className="navlink">{Icons["bell"]}</li>
+          <li className="navlink">
+            <img
+              src="https://occ-0-4995-2186.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABbixeApBW3-Nl2SD40H-NBGKmv-eneU73h6hBcupBZNKnIWKbGO_18HrX2MQBnAL0_JYocPH62UHd58T1ZGF-l0Yoil7sHE.png?r=f71"
+              alt="user-acc"
+              className="rounded-md"
+            />
+          </li>
+        </ul>
+      </div>
     </nav>
   );
 };
 
 export { Navbar };
+
+export const Icons = {
+  search: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-6 w-6"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="#fff"
+      strokeWidth={2}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+      />
+    </svg>
+  ),
+  bell: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-6 w-6"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="#fff"
+      strokeWidth={2}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+      />
+    </svg>
+  ),
+};
