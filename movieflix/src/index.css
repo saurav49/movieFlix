@@ -17,3 +17,18 @@
         @apply cursor-pointer text-sm font-normal text-[#e5e5e5] transition duration-[.4s] hover:text-[#b3b3b3]
     }
 }
+
+@import url("https://rsms.me/inter/inter.css");
+html {
+  font-family: "Inter", sans-serif;
+}
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: "Inter var", sans-serif;
+  }
+}
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
