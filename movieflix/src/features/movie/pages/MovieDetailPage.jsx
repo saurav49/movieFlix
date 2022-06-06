@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import ReactPlayer from "react-player";
 import { useNavigate } from "react-router-dom";
+import { BannerIcons } from "../../../components/Hero/Hero";
 
 const MovieDetailPage = () => {
   const [currentVideo, setCurrentVideo] = useState("");
+  const [genres, setGenres] = useState([]);
   let { selectedVideo } = useSelector((state) => state.movie);
   if (selectedVideo.hasOwnProperty("id")) {
     if (localStorage.getItem("selected__video__codemancers") !== undefined) {
@@ -33,6 +35,9 @@ const MovieDetailPage = () => {
           );
           console.log(idx);
           setCurrentVideo(data?.videos.results[idx]?.key);
+        }
+        if (data?.genres) {
+          setGenres(data.genres);
         }
       } catch (error) {
         console.log(error);
@@ -75,18 +80,20 @@ const MovieDetailPage = () => {
           <div className="flex flex-col gap-x-10 gap-y-4 font-light md:flex-row">
             <p className="w-5/6">{selectedVideo?.overview}</p>
             <div className="flex flex-col space-y-3 text-sm">
-              {/* <div>
-                <span className="text-[gray]">Genres:</span>
-                {genres.map((genre) => genre.name).join(", ")}
-              </div> */}
+              {genres && Array.isArray(genres) && genres.length > 0 && (
+                <div>
+                  <span className="text-[gray] mr-2">Genres:</span>
+                  {genres.map((genre) => genre.name).join(", ")}
+                </div>
+              )}
 
               <div>
-                <span className="text-[gray]">Original language:</span>
+                <span className="text-[gray] mr-2">Original language:</span>
                 {selectedVideo?.original_language}
               </div>
 
               <div>
-                <span className="text-[gray]">Total votes:</span>
+                <span className="text-[gray] mr-2">Total votes:</span>
                 {selectedVideo?.vote_count}
               </div>
             </div>
@@ -99,7 +106,7 @@ const MovieDetailPage = () => {
 
 export { MovieDetailPage };
 
-const MovieDetailPageIcons = {
+export const MovieDetailPageIcons = {
   back: (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -113,6 +120,22 @@ const MovieDetailPageIcons = {
         strokeLinecap="round"
         strokeLinejoin="round"
         d="M12 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2M3 12l6.414 6.414a2 2 0 001.414.586H19a2 2 0 002-2V7a2 2 0 00-2-2h-8.172a2 2 0 00-1.414.586L3 12z"
+      />
+    </svg>
+  ),
+  thumbsUp: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-6 w-6"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={2}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"
       />
     </svg>
   ),
