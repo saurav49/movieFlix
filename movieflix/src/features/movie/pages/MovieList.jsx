@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { Thumbnail } from "./Thumbnail";
 
 const MovieList = ({ title, movieList }) => {
@@ -7,7 +7,6 @@ const MovieList = ({ title, movieList }) => {
 
   const handleCarouselArrowClick = (arrowType) => {
     setIsScrollX(true);
-    console.log("hello", rowEl.current);
     if (rowEl.current) {
       const { scrollLeft, clientWidth } = rowEl.current;
 
@@ -16,15 +15,14 @@ const MovieList = ({ title, movieList }) => {
           ? scrollLeft - clientWidth
           : scrollLeft + clientWidth;
 
-      console.log({ scroll });
-
       rowEl.current.scrollTo({ left: scroll, behavior: "smooth" });
     }
   };
 
+  console.log(isScrollX);
   return (
-    <div className="h-48 space-y-0.5 md:space-y-1">
-      <h2 className="text-md md:text-md lg:text-xl text-slate-200 hover:">
+    <div className="space-y-0.5 md:space-y-1">
+      <h2 className="text-md md:text-md lg:text-xl text-slate-200 hover:text-slate-300">
         {title}
       </h2>
       <div className="group relative md:-ml-2">
@@ -33,7 +31,7 @@ const MovieList = ({ title, movieList }) => {
         </button>
         <div
           className="flex items-center scrollbar-hide
-        space-x-0.5 overflow-x-scroll md:space-x-2.5 md:p-2"
+        space-x-0.5 overflow-x-scroll overflow-y-hidden  md:space-x-2.5 md:p-2"
           ref={rowEl}
         >
           {movieList.map((movie, idx) => {

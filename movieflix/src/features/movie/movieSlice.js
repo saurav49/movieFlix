@@ -9,6 +9,7 @@ const initialState = {
   trendingMovieList: [],
   horrorMovieList: [],
   upcomingMovieList: [],
+  selectedVideo: {},
 };
 
 export const fetchAllMovie = createAsyncThunk(
@@ -26,7 +27,18 @@ export const fetchAllMovie = createAsyncThunk(
 export const movieSlice = createSlice({
   name: "movie",
   initialState,
-  reducers: {},
+  reducers: {
+    handleSelectedVideo: (state, action) => {
+      localStorage.setItem(
+        "selected__video__codemancers",
+        JSON.stringify(action.payload)
+      );
+      return {
+        ...state,
+        selectedVideo: action.payload,
+      };
+    },
+  },
   extraReducers: {
     [fetchAllMovie.pending]: (state) => {
       state.status = "loading";
@@ -45,4 +57,5 @@ export const movieSlice = createSlice({
   },
 });
 
+export const { handleSelectedVideo } = movieSlice.actions;
 export default movieSlice.reducer;
