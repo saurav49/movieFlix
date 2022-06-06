@@ -8,23 +8,23 @@ const getAllMovies = async () => {
       .then(
         axios.spread((popular, topRated, trending, horror, upcoming) => {
           return {
-            popularMoviesList: {
+            popularMovieList: {
               data: popular.data.results,
               status: popular.status,
             },
-            topRatedMoviesList: {
+            topRatedMovieList: {
               data: topRated.data.results,
               status: topRated.status,
             },
-            trendingMoviesList: {
+            trendingMovieList: {
               data: trending.data.results,
               status: trending.status,
             },
-            horrorMoviesList: {
+            horrorMovieList: {
               data: horror.data.results,
               status: horror.status,
             },
-            upcomingMoviesList: {
+            upcomingMovieList: {
               data: upcoming.data.results,
               status: upcoming.status,
             },

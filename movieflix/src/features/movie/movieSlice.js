@@ -1,11 +1,11 @@
-import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getAllMovies } from "../../services/movie";
 
 const initialState = {
   status: "idle",
   loader: false,
-  popularMoviesList: [],
-  totRatedMovieList: [],
+  popularMovieList: [],
+  topRatedMovieList: [],
   trendingMovieList: [],
   horrorMovieList: [],
   upcomingMovieList: [],

@@ -8,8 +8,8 @@ import { fetchAllMovie } from "./features/movie/movieSlice";
 function App() {
   const dispatch = useDispatch();
   const {
-    popularMoviesList,
-    totRatedMovieList,
+    popularMovieList,
+    topRatedMovieList,
     trendingMovieList,
     horrorMovieList,
     upcomingMovieList,
@@ -24,9 +24,9 @@ function App() {
       <Navbar />
       <main className="relative pl-6 lg:pl-12 pb-24 lg:space-y-24">
         <Hero />
-        <section>
-          <MovieList title="Popular" movieList={popularMoviesList} />
-          <MovieList title="Top Rated" movieList={totRatedMovieList} />
+        <section className="flex flex-col space-y-2 sm:space-y-10">
+          <MovieList title="Popular" movieList={popularMovieList} />
+          <MovieList title="Top Rated" movieList={topRatedMovieList} />
           <MovieList title="Trending" movieList={trendingMovieList} />
           <MovieList title="Horror" movieList={horrorMovieList} />
           <MovieList title="Upcoming" movieList={upcomingMovieList} />

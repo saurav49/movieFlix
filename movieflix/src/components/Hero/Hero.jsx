@@ -3,23 +3,23 @@ import { useSelector } from "react-redux";
 import { IMAGE__API } from "../../urls";
 
 const Hero = () => {
-  const { popularMoviesList } = useSelector((state) => state.movie);
+  const { popularMovieList } = useSelector((state) => state.movie);
 
   const [movieBanner, setMovieBanner] = useState("");
 
   useEffect(() => {
     if (
-      popularMoviesList.length > 0 &&
+      popularMovieList.length > 0 &&
       !movieBanner.hasOwnProperty("backdrop_path")
     ) {
       setMovieBanner(
-        popularMoviesList[Math.floor(Math.random() * popularMoviesList.length)]
+        popularMovieList[Math.floor(Math.random() * popularMovieList.length)]
       );
     }
-  }, [popularMoviesList, movieBanner]);
+  }, [popularMovieList, movieBanner]);
 
   return (
-    <div className="flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12">
+    <div className="flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] md:justify-end lg:justify-center lg:pb-12">
       <div className="absolute top-0 left-0 -z-10 h-[95vh] w-screen ">
         {movieBanner && movieBanner.hasOwnProperty("backdrop_path") && (
           <img
