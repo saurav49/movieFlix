@@ -19,16 +19,20 @@ const MovieList = ({ title, movieList }) => {
     }
   };
 
-  console.log(isScrollX);
   return (
     <div className="space-y-0.5 md:space-y-1">
       <h2 className="text-md md:text-md lg:text-xl text-slate-200 hover:text-slate-300">
         {title}
       </h2>
       <div className="group relative md:-ml-2">
-        <button onClick={() => handleCarouselArrowClick("LEFT")}>
-          {movieListIcons["left"]}
-        </button>
+        {isScrollX && (
+          <button
+            onClick={() => handleCarouselArrowClick("LEFT")}
+            className="z-50"
+          >
+            {movieListIcons["left"]}
+          </button>
+        )}
         <div
           className="flex items-center scrollbar-hide
         space-x-0.5 overflow-x-scroll overflow-y-hidden  md:space-x-2.5 md:p-2"
@@ -38,7 +42,10 @@ const MovieList = ({ title, movieList }) => {
             return <Thumbnail key={idx} movie={movie} />;
           })}
         </div>
-        <button onClick={() => handleCarouselArrowClick("RIGHT")}>
+        <button
+          onClick={() => handleCarouselArrowClick("RIGHT")}
+          className="z-50"
+        >
           {movieListIcons["right"]}
         </button>
       </div>

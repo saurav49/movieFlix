@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import ReactPlayer from "react-player";
 import { useNavigate } from "react-router-dom";
-import { BannerIcons } from "../../../components/Hero/Hero";
 
 const MovieDetailPage = () => {
   const [currentVideo, setCurrentVideo] = useState("");
@@ -29,11 +28,9 @@ const MovieDetailPage = () => {
           }&language=en-US&append_to_response=videos`
         );
         if (data?.videos.results.length > 0) {
-          console.log("{ idx }");
           const idx = data?.videos.results.findIndex(
             (vid) => vid.type === "Trailer"
           );
-          console.log(idx);
           setCurrentVideo(data?.videos.results[idx]?.key);
         }
         if (data?.genres) {
@@ -45,7 +42,6 @@ const MovieDetailPage = () => {
     })();
   }, [selectedVideo, currentVideo]);
 
-  console.log({ currentVideo });
   return (
     <div className="mt-20 mr-10">
       <button

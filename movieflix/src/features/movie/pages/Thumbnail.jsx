@@ -15,7 +15,7 @@ const Thumbnail = ({ movie }) => {
   };
   return (
     <div
-      className="flex flex-col items-center transition ease-out duration-300 hover:scale-125 hover:z-50"
+      className="flex flex-col items-center transition ease-out duration-300 hover:scale-125 hover:z-30"
       onClick={() => handleThumbnailClick(movie)}
     >
       <div
