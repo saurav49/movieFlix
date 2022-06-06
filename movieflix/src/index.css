@@ -16,6 +16,18 @@
     .navlink {
         @apply cursor-pointer text-sm font-normal text-[#e5e5e5] transition duration-[.4s] hover:text-[#b3b3b3]
     }
+
+    .herobtn {
+      @apply cursor-pointer flex items-center gap-x-2 text-[#e5e5e5] rounded-md text-sm font-semibold px-2 py-1 transition hover:opacity-75 md:py-2.5 md:px-8 md:text-xl
+    }
+
+    .heroBtnWhite {
+      @apply bg-white text-slate-900
+    }
+
+    .heroBtnGray {
+      @apply bg-[#6d6d63b3]
+    }
 }
 
 @import url("https://rsms.me/inter/inter.css");

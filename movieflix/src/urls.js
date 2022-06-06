@@ -1,5 +1,6 @@
 const API__KEY = process.env.REACT_APP_TMDB_API_KEY;
 const TMDB__API = `https://api.themoviedb.org/3/movie/550?api_key=${API__KEY}`;
+const IMAGE__API = "https://image.tmdb.org/t/p/original/";
 
 const POPULAR__API = `https://api.themoviedb.org/3/movie/popular?api_key=${API__KEY}&language=en-US&page=1`;
 const TOP__RATED__API = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API__KEY}&language=en-US&page=1`;
@@ -21,4 +22,5 @@ export {
   HORROR__API,
   UPCOMDING__API,
   endpoints,
+  IMAGE__API,
 };
